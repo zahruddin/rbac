@@ -26,7 +26,7 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        $role = auth()->user()->roles->first()->name;
+        // $role = auth()->user()->roles->first()->name;
         
         $request->user()->fill($request->validated());
 
@@ -35,7 +35,7 @@ class ProfileController extends Controller
         }
 
         $request->user()->save();
-        return Redirect::route("$role.profile.edit")->with('status', 'profile-updated');
+        return Redirect::route("profile.edit")->with('status', 'profile-updated');
     }
 
     /**
