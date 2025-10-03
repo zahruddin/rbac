@@ -41,10 +41,16 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
+        // === TAMBAHKAN BARIS INI ===
+        // Langsung berikan role 'mahasiswa' ke pengguna yang baru dibuat
+        $user->assignRole('mahasiswa');
+        // ===========================
+
         event(new Registered($user));
 
         Auth::login($user);
 
-        return redirect(route('dashboard', absolute: false));
+        // Arahkan langsung ke dashboard mahasiswa
+        return redirect(route('mahasiswa.dashboard', absolute: false));
     }
 }

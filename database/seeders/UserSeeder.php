@@ -10,72 +10,91 @@ use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
     public function run(): void
     {
-        // Reset cache
+        // Selalu reset cache permission di awal untuk memastikan data terbaru
         app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
 
-        // ==== Permissions ====
+        // ==== 1. BUAT PERMISSIONS BARU YANG LEBIH SEDERHANA ====
+        $this->command->info('Membuat permissions untuk User & Role Management...');
+        
+        // PERUBAHAN: Daftar permission disederhanakan menjadi CRUD untuk users dan roles
         $permissions = [
-            'manage users',
-            'manage dosen',
-            'manage mahasiswa',
-            'view siakad',
-            'input nilai',
-            'krs mahasiswa',
+            'create-users',
+            'read-users',
+            'update-users',
+            'delete-users',
+            'create-roles',
+            'read-roles',
+            'update-roles',
+            'delete-roles',
         ];
 
         foreach ($permissions as $permission) {
-            Permission::firstOrCreate(['name' => $permission]);
+            Permission::firstOrCreate(['name' => $permission, 'guard_name' => 'web']);
         }
+        $this->command->info('Permissions berhasil dibuat.');
 
-        // ==== Roles ====
+
+        // ==== 2. BUAT ROLES BARU DAN BERIKAN PERMISSIONS ====
+        $this->command->info('Membuat roles dan memberikan permissions...');
+        
+        // PERUBAHAN: Struktur role diubah menjadi lebih umum
+        $superAdminRole = Role::firstOrCreate(['name' => 'super-admin']);
         $adminRole = Role::firstOrCreate(['name' => 'admin']);
-        $dosenRole = Role::firstOrCreate(['name' => 'dosen']);
-        $mahasiswaRole = Role::firstOrCreate(['name' => 'mahasiswa']);
+        $userRole = Role::firstOrCreate(['name' => 'user']);
 
-        // Assign permission ke role
-        $adminRole->givePermissionTo(Permission::all());
+        // Super Admin mendapatkan semua permission yang ada
+        $superAdminRole->syncPermissions(Permission::all());
 
-        $dosenRole->givePermissionTo([
-            'input nilai',
-            'view siakad',
+        // Admin hanya mendapatkan permission untuk mengelola pengguna
+        $adminRole->syncPermissions([
+            'create-users',
+            'read-users',
+            'update-users',
+            'delete-users',
         ]);
 
-        $mahasiswaRole->givePermissionTo([
-            'krs mahasiswa',
-            'view siakad',
-        ]);
+        // Role 'user' tidak diberikan permission administratif apa pun
+        $this->command->info('Roles dan permissions berhasil diatur.');
 
-        // ==== Users ====
+
+        // ==== 3. BUAT USER DEFAULT UNTUK SETIAP ROLE BARU ====
+        $this->command->info('Membuat user default...');
+        
+        // PERUBAHAN: User disesuaikan dengan role yang baru
+        // Super Admin
+        User::firstOrCreate(
+            ['email' => 'superadmin@example.com'],
+            [
+                'name' => 'Super Admin',
+                'password' => Hash::make('password'),
+            ]
+        )->assignRole($superAdminRole);
+
         // Admin
-        $admin = User::firstOrCreate(
-            ['email' => 'admin@siakad.test'],
+        User::firstOrCreate(
+            ['email' => 'admin@example.com'],
             [
-                'name' => 'Admin SIAKAD',
-                'password' => Hash::make('password'), // ganti di production
-            ]
-        );
-        $admin->assignRole($adminRole);
-
-        // Dosen
-        $dosen = User::firstOrCreate(
-            ['email' => 'dosen@siakad.test'],
-            [
-                'name' => 'Dosen SIAKAD',
+                'name' => 'Admin',
                 'password' => Hash::make('password'),
             ]
-        );
-        $dosen->assignRole($dosenRole);
+        )->assignRole($adminRole);
 
-        // Mahasiswa
-        $mahasiswa = User::firstOrCreate(
-            ['email' => 'mahasiswa@siakad.test'],
+        // User Biasa
+        User::firstOrCreate(
+            ['email' => 'user@example.com'],
             [
-                'name' => 'Mahasiswa SIAKAD',
+                'name' => 'User Biasa',
                 'password' => Hash::make('password'),
             ]
-        );
-        $mahasiswa->assignRole($mahasiswaRole);
+        )->assignRole($userRole);
+
+        $this->command->info('User default berhasil dibuat.');
     }
 }

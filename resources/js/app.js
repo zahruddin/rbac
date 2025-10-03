@@ -1,4 +1,5 @@
 import './bootstrap';
+import 'flowbite'; // <-- TAMBAHKAN BARIS INI
 
 import Alpine from 'alpinejs';
 
