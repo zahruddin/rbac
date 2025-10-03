@@ -1,61 +1,88 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🛡️ RBAC Dashboard Project
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+[![Laravel v12.x](https://img.shields.io/badge/Laravel-v12.x-FF2D20?style=for-the-badge&logo=laravel)](https://laravel.com)
+[![PHP](https://img.shields.io/badge/PHP-8.2+-777BB4?style=for-the-badge&logo=php)](https://www.php.net/)
+[![Spatie Permissions](https://img.shields.io/badge/Spatie-Permissions-success?style=for-the-badge)](https://spatie.be/docs/laravel-permission/v6/introduction)
+[![Flowbite](https://img.shields.io/badge/Frontend-Flowbite-3B82F6?style=for-the-badge&logo=tailwind-css)](https://flowbite.com/)
 
-## About Laravel
+Selamat datang di *project* **Role-Based Access Control (RBAC) Dashboard** yang dibangun dengan fondasi **Laravel 12** modern, didukung oleh reaktivitas **Livewire**, dan dipercantik dengan komponen **Flowbite**.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Proyek ini menyediakan solusi manajemen akses yang kuat, memungkinkan administrator untuk mengontrol sumber daya sistem secara granular hingga ke tingkat pengguna individu.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## ✨ Fitur Utama (The Core)
 
-## Learning Laravel
+* **Sistem Otentikasi Cepat:** Dibangun di atas **Laravel Breeze**, menyediakan *scaffolding* otentikasi yang aman dan siap pakai (Login, Register, Reset Password, dll.).
+* **Manajemen Akses Granular (RBAC):** Menggunakan paket **Spatie Laravel Permission** terkemuka di industri.
+    * **Manajemen Peran (*Roles*):** Buat, edit, dan tetapkan peran (e.g., Administrator, Editor, Viewer).
+    * **Manajemen Izin (*Permissions*):** Tentukan izin spesifik (e.g., `create post`, `delete user`).
+    * **Izin Spesifik Pengguna:** Kemampuan untuk memberikan *permission* secara langsung kepada pengguna, mengabaikan peran mereka, untuk kontrol akses yang sangat spesifik.
+* **User Management:** Antarmuka lengkap untuk mengelola pengguna, menetapkan peran, dan menyesuaikan izin.
+* **Pengalaman Pengguna Interaktif:** Seluruh dashboard didukung oleh **Livewire**, memastikan interaksi yang cepat, *stateful*, dan tanpa *full page reload*.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+---
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## 🛠️ Tumpukan Teknologi (The Stack)
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+| Kategori | Teknologi | Deskripsi |
+| :--- | :--- | :--- |
+| **Backend Framework** | **Laravel 12** | Fondasi PHP framework yang kuat dan ekspresif. |
+| **Reaktivitas** | **Livewire** | Membuat antarmuka dinamis menggunakan PHP, meminimalkan *boilerplate* JavaScript. |
+| **Otentikasi** | **Laravel Breeze** | *Scaffolding* awal yang minimalis dan aman. |
+| **Kontrol Akses** | **Spatie Laravel Permission** | Solusi terpercaya untuk implementasi RBAC. |
+| **Frontend/UI** | **Flowbite** | Komponen UI berbasis Tailwind CSS untuk dashboard yang menarik dan responsif. |
 
-## Laravel Sponsors
+---
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## 🚀 Instalasi dan Pengaturan
 
-### Premium Partners
+Ikuti langkah-langkah ini untuk menjalankan proyek secara lokal:
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+### 1. Kloning Repositori
 
-## Contributing
+```bash
+git clone [https://github.com/zahruddin/rbac.git](https://github.com/zahruddin/rbac.git)
+cd rbac
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+2. Instal Dependensi
 
-## Code of Conduct
+Pastikan Anda memiliki PHP dan Composer terinstal.
+Bash
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+composer install
+npm install
+npm run dev
 
-## Security Vulnerabilities
+3. Konfigurasi Lingkungan
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Salin file lingkungan dan buat kunci aplikasi:
+Bash
 
-## License
+cp .env.example .env
+php artisan key:generate
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Edit file .env Anda untuk mengkonfigurasi kredensial database.
+
+4. Migrasi Database & Seeder
+
+Jalankan migrasi database. Pastikan Anda memiliki seeder yang membuat Peran dan Pengguna awal.
+Bash
+
+php artisan migrate --seed
+
+5. Jalankan Aplikasi
+
+Bash
+
+php artisan serve
+
+Aplikasi Anda akan tersedia di http://127.0.0.1:8000. Akses dashboard dan uji fitur RBAC!
+
+👨‍💻 Kontribusi
+
+Kami menyambut kontribusi dalam bentuk laporan bug, permintaan fitur, atau pull request! Silakan merujuk ke file CONTRIBUTING.md (jika ada) untuk detail lebih lanjut.
+
+📜 Lisensi
+
+Proyek ini berlisensi di bawah MIT License.
