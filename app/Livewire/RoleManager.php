@@ -45,7 +45,7 @@ class RoleManager extends Component
 
         return view('livewire.role-manager', [
             'roles' => $roles
-        ])->layout('layouts.app');
+        ])->layout('components.layouts.app');
     }
 
     public function create()

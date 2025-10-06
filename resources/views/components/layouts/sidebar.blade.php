@@ -11,15 +11,15 @@
             </a>
          </li>
          @if(isset($sidebarMenu))
-                @foreach ($sidebarMenu as $menu)
-                    <li>
-                        <a href="{{ route($menu['route']) }}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                            {!! $menu['icon'] !!}
-                            <span class="ms-3">{{ $menu['name'] }}</span>
-                        </a>
-                    </li>
-                @endforeach
-            @endif
+               @foreach ($sidebarMenu as $menu)
+                  <li>
+                     <a href="{{ route($menu['route']) }}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                           {!! $menu['icon'] !!}
+                           <span class="ms-3">{{ $menu['name'] }}</span>
+                     </a>
+                  </li>
+               @endforeach
+         @endif
       </ul>
    </div>
 </aside>

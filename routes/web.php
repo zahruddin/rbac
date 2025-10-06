@@ -5,7 +5,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\UserTable;
 use App\Livewire\RoleManager;
-
+use App\Settings\GeneralSettings;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -38,5 +38,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // Route::get('/mahasiswa', MahasiswaTable::class)->name('mahasiswa.index')->middleware('permission:read-mahasiswa');
 
 });
+
+Route::get('/admin/settings', function () {
+    // Konten dari settings.index akan masuk ke dalam $slot
+    return view('settings.index'); 
+})->name('admin.settings');
 
 require __DIR__.'/auth.php';

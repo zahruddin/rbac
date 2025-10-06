@@ -1,6 +1,8 @@
-@extends('layouts.guest')
-
-@section('content')
+<x-app-layout>
+    {{-- Slot untuk judul tab browser --}}
+    <x-slot:title>
+        Dashboard
+    </x-slot:title>
     <section class="bg-white dark:bg-gray-900 pt-24">
         <div class="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
             <div class="mr-auto place-self-center lg:col-span-7">
@@ -54,4 +56,4 @@
             <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© {{ date('Y') }} <a href="#" class="hover:underline">SEEFAN SIAKAD™</a>. All Rights Reserved.</span>
         </div>
     </footer>
-    @endsection
+</x-app-layout>

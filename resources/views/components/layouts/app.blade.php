@@ -21,17 +21,19 @@
     </script>
 </head>
 <body class="font-sans antialiased bg-gray-50 dark:bg-gray-900">
+    @auth
     @php
         // Ambil role pertama dari pengguna yang sedang login
         $role = Auth::user()->getRoleNames()->first();
     @endphp
+    @endauth
 
-    @include('layouts.navbar')
+    <x-layouts.navbar />
 
     {{-- Sidebar hanya untuk user yang sudah login --}}
 
     @auth
-        @include('layouts.sidebar')
+        <x-layouts.sidebar />
     @endauth
 
     <div class="p-4 sm:ml-64">

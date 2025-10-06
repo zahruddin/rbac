@@ -136,6 +136,6 @@ class UserTable extends Component
             
         return view('livewire.user-table', [
             'users' => $users
-        ])->layout('layouts.app');
+        ])->layout('components.layouts.app');
     }
 }
