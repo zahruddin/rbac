@@ -5,7 +5,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\UserTable;
 use App\Livewire\RoleManager;
-use App\Settings\GeneralSettings;
+use App\Livewire\Settings\GeneralSettingsManager;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,6 +15,10 @@ use App\Settings\GeneralSettings;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/site-closed', function () {
+    return view('site-closed');
+})->name('site.closed'); 
 
 // Grup untuk semua rute yang membutuhkan login
 Route::middleware(['auth', 'verified'])->group(function () {
@@ -34,14 +38,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // Hanya pengguna dengan izin 'manage-roles' yang bisa mengakses /roles
     Route::get('/roles', RoleManager::class)->name('roles.index')->middleware('permission:read-roles');
     
-    // Tambahkan rute manajemen lainnya dengan cara yang sama...
-    // Route::get('/mahasiswa', MahasiswaTable::class)->name('mahasiswa.index')->middleware('permission:read-mahasiswa');
-
+    Route::get('settings/general', GeneralSettingsManager::class)->name('settings.general')->middleware('permission:read-general-settings');
 });
-
-Route::get('/admin/settings', function () {
-    // Konten dari settings.index akan masuk ke dalam $slot
-    return view('settings.index'); 
-})->name('admin.settings');
 
 require __DIR__.'/auth.php';

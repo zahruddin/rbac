@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-guest-layout>
     {{-- Slot untuk judul tab browser --}}
     <x-slot:title>
         Dashboard
@@ -56,4 +56,4 @@
             <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© {{ date('Y') }} <a href="#" class="hover:underline">SEEFAN SIAKAD™</a>. All Rights Reserved.</span>
         </div>
     </footer>
-</x-app-layout>
+</x-guest-layout>

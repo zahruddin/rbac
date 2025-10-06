@@ -22,12 +22,13 @@
 <body class="font-sans antialiased bg-gray-50 dark:bg-gray-900">
     
 
-    @include('layouts.navbar')
+        <x-layouts.navbar />
+
 
     {{-- Sidebar hanya untuk user yang sudah login --}}
 
     <main>
-        @yield('content')
+        {{ $slot }}
     </main>
 
     {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script> --}}
